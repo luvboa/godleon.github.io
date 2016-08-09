@@ -88,6 +88,8 @@ $ sudo ip -s -s neigh flush all
 
 - [clearing the arp cache in linux » Linux Shtuff](http://g33kinfo.com/info/archives/4356)
 
+- [How to clear ARP cache on Linux or Unix – Coders Eye](http://coderseye.com/how-to-clear-arp-cache-on-linux-or-unix/)
+
 -----------------------------------
 
 網路
@@ -106,7 +108,7 @@ Linux Mint 在啟動時會自動開啟藍芽，但無法在畫面右下角關閉
 
 ## PPTP VPN
 
-- [[HowTo] PPTP: Ubuntu Client 連接到 Windows VPN Server [論壇 - Ubuntu基本設定] | Ubuntu 正體中文站](http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?topic_id=40626)
+- [[HowTo] PPTP: Ubuntu Client 連接到 Windows VPN Server [論壇 - Ubuntu基本設定] - Ubuntu 正體中文站](http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?topic_id=40626)
 
 ### Ubuntu 12.04
 
@@ -138,7 +140,7 @@ $ sudo ip route change default via 192.168.10.1 dev eth0
 
 - [ubuntu 安裝 line @ 我的生活 :: 痞客邦 PIXNET ::](http://yyyfly.pixnet.net/blog/post/58092096)
 
-- [關於 LINE 的安裝 [論壇 - Ubuntu安裝問題] | Ubuntu 正體中文站](http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?viewmode=flat&order=DESC&topic_id=50062&forum=1)
+- [關於 LINE 的安裝 [論壇 - Ubuntu安裝問題] - Ubuntu 正體中文站](http://www.ubuntu-tw.org/modules/newbb/viewtopic.php?viewmode=flat&order=DESC&topic_id=50062&forum=1)
 
 
 -----------------------------------
@@ -175,7 +177,7 @@ Sublime Text 3
 
 ## 安裝
 
-- [How to Install Sublime Text 3 in Ubuntu 14.04 Trusty | UbuntuHandbook](http://ubuntuhandbook.org/index.php/2013/12/install-sublime-text-3-ubuntu-14-04-trusty/)
+- [How to Install Sublime Text 3 in Ubuntu 14.04 Trusty - UbuntuHandbook](http://ubuntuhandbook.org/index.php/2013/12/install-sublime-text-3-ubuntu-14-04-trusty/)
 
 
 -----------------------------------
@@ -184,7 +186,7 @@ Sublime Text 3
 Atom
 ====
 
-- [在 Ubuntu 14.04 和 Linux Mint 17 上安装 Atom 文本编辑器-技术 ◆ 学习|Linux.中国-开源中文社区](https://linux.cn/article-3663-1.html)
+- [在 Ubuntu 14.04 和 Linux Mint 17 上安装 Atom 文本编辑器-技术 ◆ 学习 - Linux.中国-开源中文社区](https://linux.cn/article-3663-1.html)
 
 - [Atom 的中文顯示框框問題 ~ Open Jiang](http://jeffyon.blogspot.tw/2015/05/atom-md.html)
 
