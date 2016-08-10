@@ -59,7 +59,8 @@ $ yum install -y qemu-kvm \
     virt-manager \
     python-virtinst \
     libvirt-client \
-    bridge-utils
+    bridge-utils \
+    net-tools
 ```
 
 ## 防火牆設定
