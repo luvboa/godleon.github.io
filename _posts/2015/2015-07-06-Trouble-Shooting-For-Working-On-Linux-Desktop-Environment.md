@@ -9,6 +9,8 @@ categories: [linux]
 tags: [Linux]
 ---
 
+記錄平常使用 Ubuntu 作為日常工作用 OS 時所遇到的問題 & 排除方式
+
 環境說明
 =======
 
