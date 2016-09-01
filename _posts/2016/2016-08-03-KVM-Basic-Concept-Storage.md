@@ -37,7 +37,7 @@ Host Machine Swap 空間應該要設定多大?
 
 假設配置 memory overcommit rate 為 0.5 (例如：128 GB 的記憶體卻配置 `128 * (1 + 0.5) = 192 GB`)，那 swap space 除了上面的大小外，還要額外在加上記憶體容量 x 0.5 的空間。
 
-亦即設定 memory overcommit，還要多增加 <font color='red'>**physical memory x memory overcommit rate**</font> 的容量大小給 swap space。
+亦即設定 memory overcommit，還要多增加 **<font color='red'>physical memory x memory overcommit rate</font>** 的容量大小給 swap space。
 
 舉個實際例子，假設 host machine 有 32GB 記憶體，memory overcommit ratio 設定為 0.5，則 swap space 的容量計算如下：
 
