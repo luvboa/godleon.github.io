@@ -18,6 +18,33 @@ tags: [Linux, KVM]
 
 ----------------------------------------------------------------------------
 
+Host Machine Swap 空間應該要設定多大?
+==================================
+
+以前學 Linux 時知道，swap 是用來作為當記憶體不足時的 buffer 用，而現在虛擬化環境中，每台 host machine 的記憶體容量都很大，那 swap 應該如何規劃配置呢? 以下有幾個原則：
+
+### 不使用 memory overcommit
+
+1. 若實體記憶體 <= 4GB，則 swap space 設定為 2GB
+
+2. 若 4GB < 實體記憶體 <= 16GB，則 swap space 設定為 4GB
+
+3. 若 16GB < 實體記憶體 <= 64GB，則 swap space 設定為 8GB
+
+4. 若 64GB < 實體記憶體 <= 526GB，則 swap space 設定為 16GB
+
+### 使用 memory overcommit
+
+假設配置 memory overcommit rate 為 0.5 (例如：128 GB 的記憶體卻配置 `128 * (1 + 0.5) = 192 GB`)，那 swap space 除了上面的大小外，還要額外在加上記憶體容量 x 0.5 的空間。
+
+亦即設定 memory overcommit，還要多增加 <font color='red'>**physical memory x memory overcommit rate**</font> 的容量大小給 swap space。
+
+舉個實際例子，假設 host machine 有 32GB 記憶體，memory overcommit ratio 設定為 0.5，則 swap space 的容量計算如下：
+
+> (32 * 0.5) + 8 = 24 GB
+
+----------------------------------------------------------------------------
+
 Storage Device & 開機順序的配置
 ==============================
 
