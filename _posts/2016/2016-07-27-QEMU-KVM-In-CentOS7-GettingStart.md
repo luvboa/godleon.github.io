@@ -60,12 +60,29 @@ $ yum install -y qemu-kvm \
     python-virtinst \
     libvirt-client \
     bridge-utils \
-    net-tools
+    net-tools \
+    libguestfs-tools-c \
+    iptables-services
+
+# 也可使用 groupinstall 來批次安裝
+$ yum groupinstall "virtualization" -y
 ```
 
 ## 防火牆設定
 
-停用預設的 **firewalld.service**，改用傳統的 itpables 來進行防火牆設定，並使用以下 script 建立防火牆：
+停用預設的 **firewalld.service**，並啟用 **iptables.service**：
+
+```bash
+# 關閉 firewalld
+$ systemctl stop firewalld.service
+$ systemctl disable firewalld.service
+
+# 啟用 iptables
+$ systemctl stop iptables.service
+$ systemctl disable iptables.service
+```
+
+改用傳統的 itpables 來進行防火牆設定，並使用以下 script 建立防火牆：
 
 ```bash
 #!/bin/bash
@@ -90,6 +107,96 @@ iptables -t filter -A INPUT -p tcp --dport 5900:5910 -j ACCEPT
 # 用來取代 chain default policy
 iptables -t filter -A INPUT -i ${IIF} -j DROP
 ```
+
+> 上面的套件安裝 & 防火牆設定完成後，要將 KVM host 重新開啟，並啟動 **<font color='red'>libvirtd.service</font>**
+
+---------------------------------------------------------------------
+
+驗證環境
+=======
+
+安裝好 QEMU/KVM 相關套件後，我們可以來檢查目前的環境是否可以正確的運行虛擬化功能：
+
+```bash
+$ virt-host-validate
+  QEMU: Checking for hardware virtualization                                 : PASS
+  QEMU: Checking for device /dev/kvm                                         : PASS
+  QEMU: Checking for device /dev/vhost-net                                   : PASS
+  QEMU: Checking for device /dev/net/tun                                     : PASS
+   LXC: Checking for Linux >= 2.6.26                                         : PASS
+```
+
+```bash
+$ virsh nodeinfo
+CPU model:           x86_64
+CPU(s):              48
+CPU frequency:       1200 MHz
+CPU socket(s):       1
+Core(s) per socket:  12
+Thread(s) per core:  2
+NUMA cell(s):        2
+Memory size:         263930636 KiB
+
+$ virsh domcapabilities
+<domainCapabilities>
+  <path>/usr/bin/qemu-system-x86_64</path>
+  <domain>qemu</domain>
+  <machine>pc-i440fx-2.0</machine>
+  <arch>x86_64</arch>
+  <vcpu max='255'/>
+  <os supported='yes'>
+    <loader supported='yes'>
+      <enum name='type'>
+        <value>rom</value>
+        <value>pflash</value>
+      </enum>
+      <enum name='readonly'>
+        <value>yes</value>
+        <value>no</value>
+      </enum>
+    </loader>
+  </os>
+  <devices>
+    <disk supported='yes'>
+      <enum name='diskDevice'>
+        <value>disk</value>
+        <value>cdrom</value>
+        <value>floppy</value>
+        <value>lun</value>
+      </enum>
+      <enum name='bus'>
+        <value>ide</value>
+        <value>fdc</value>
+        <value>scsi</value>
+        <value>virtio</value>
+        <value>usb</value>
+      </enum>
+    </disk>
+    <hostdev supported='yes'>
+      <enum name='mode'>
+        <value>subsystem</value>
+      </enum>
+      <enum name='startupPolicy'>
+        <value>default</value>
+        <value>mandatory</value>
+        <value>requisite</value>
+        <value>optional</value>
+      </enum>
+      <enum name='subsysType'>
+        <value>usb</value>
+        <value>pci</value>
+        <value>scsi</value>
+      </enum>
+      <enum name='capsType'/>
+      <enum name='pciBackend'>
+        <value>default</value>
+        <value>vfio</value>
+      </enum>
+    </hostdev>
+  </devices>
+</domainCapabilities>
+```
+
 
 ---------------------------------------------------------------------
 
