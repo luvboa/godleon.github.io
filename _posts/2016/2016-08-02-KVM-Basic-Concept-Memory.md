@@ -54,6 +54,8 @@ $ kvm -vnc 0.0.0.0:1 -m 2048 -hda /kvm/storage/vm_disks/ubnutu1604.img
 $ kvm -vnc 0.0.0.0:1 -m 4G -hda /kvm/storage/vm_disks/ubnutu1604.img
 ```
 
+---------------------------------------------------------------------
+
 EPT
 ===
 
