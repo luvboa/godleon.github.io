@@ -18,6 +18,10 @@ tags: [Linux, KVM]
 
 也因為這樣，當網路發生故障時，這些公司的損失常常難以估計，因此網路架構的設計上，保有彈性 & 穩定性是相當重要的。
 
+而現在 server 普遍都擁有多張網路卡，為了提高網路使用效率 & 增加備援功能，建議 **<font color='red'>透過 Linux bonding 的技術將所有的網路卡設定成為 single virtual channel</font>**。
+
+> bonding mode 有分為 Mode 1(active-backup)、Mode 2(balance-xor)、Mode 4(802.3ad/LACP)、Mode 5(balance-tlb)，其中建議使用 `Mode 1(active-backup)` & `Mode 5(balance-tlb)`
+
 -------------------------------------------------------------------------
 
 KVM/QEMU 支援的 Network Type
