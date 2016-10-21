@@ -8,3 +8,4 @@ node_modules
 _asset_bundler_cache
 .jekyll-metadata
 _posts/not_complete/*
+.vscode
