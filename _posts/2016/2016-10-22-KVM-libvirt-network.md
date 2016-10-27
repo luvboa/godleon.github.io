@@ -6,7 +6,7 @@ date: 2016-10-22 06:00:00
 published: true
 comments: true
 categories: [kvm]
-tags: [Linux, KVM, libvirt]
+tags: [Linux, KVM, libvirt, Network]
 ---
 
 介紹如何使用 libvirt 來管理 KVM virtual network
