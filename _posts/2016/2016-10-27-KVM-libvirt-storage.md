@@ -62,7 +62,7 @@ $ virsh attach-disk centos7 /tmp/dbvm_disk1.img vdb --live --config
 Disk attached successfully
 
 $ virsh domblklist centos7
-Target     Source
+Target     Source- [KVM XML 設定檔基本內容](http://www.tfcis.org/~lantw44/download/notes/cs/libvirt.domain(5))
 ------------------------------------------------
 vda        /var/lib/libvirt/images/hdd/vmdisk/centos7.qcow2
 vdb        /tmp/dbvm_disk1.img
@@ -254,3 +254,5 @@ References
 - [Suse Doc: Virtualization with KVM - Managing Storage with virsh](https://www.suse.com/documentation/sles11/book_kvm/data/sec_libvirt_storage_virsh.html)
 
 - [Using libvirt with Ceph RBD — Ceph Documentation](http://docs.ceph.com/docs/hammer/rbd/libvirt/)
+
+- [KVM XML 設定檔基本內容](http://www.tfcis.org/~lantw44/download/notes/cs/libvirt.domain(5))
