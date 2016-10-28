@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[Linux KVM] libvirt - 管理 virtual network"
+title:  "[Linux KVM] libvirt & network"
 description: "This article introduces how to manage virtual network environment by libvirt in QEMU/KVM"
 date: 2016-10-22 06:00:00
 published: true
@@ -322,3 +322,5 @@ References
 - [Networking - KVM]()http://www.linux-kvm.org/page/Networking
 
 - [libvirt: Network XML format](https://libvirt.org/formatnetwork.html)
+
+- [KVM XML 設定檔基本內容](http://www.tfcis.org/~lantw44/download/notes/cs/libvirt.domain(5))
