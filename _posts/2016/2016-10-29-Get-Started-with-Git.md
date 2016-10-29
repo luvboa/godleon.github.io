@@ -3,11 +3,11 @@
 layout: post
 title:  "[Git] Get Started"
 description: "This article introduces the informations for getting started with Git"
-date: 2016-10-27 09:50:00
+date: 2016-10-29 23:50:00
 published: true
 comments: true
-categories: [kvm]
-tags: [Linux, KVM, libvirt, Storage]
+categories: [git]
+tags: [Git]
 ---
 
 初始化 Git Repository
