@@ -1,7 +1,6 @@
-
 ---
 layout: post
-title:  "[Git] Get Started"
+title:  "[Git] Get Started with Git"
 description: "This article introduces the informations for getting started with Git"
 date: 2016-10-29 23:50:00
 published: true
@@ -9,6 +8,9 @@ comments: true
 categories: [git]
 tags: [Git]
 ---
+
+介紹開始使用 Git 前調教 config 的相關資訊
+
 
 初始化 Git Repository
 =====================
