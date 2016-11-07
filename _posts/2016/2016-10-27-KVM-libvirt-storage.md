@@ -130,7 +130,7 @@ Available:      937.73 GiB
 
 以下使用 filesystem & LVM 作為建立 storage pool 的範例：
 
- ## (1) 建立 fife system directory backed storage pool
+## (1) 建立 fife system directory backed storage pool
 
 這是上述 `defautl` pool 的方式，使用的是 KVM host 上的 `/var/lib/libvirt/images` 資料夾作為儲存 volume 的位置
 
@@ -154,7 +154,7 @@ $ virsh -c qemu+ssh://root@10.20.190.2/system pool-autostart dedicated_storage
 Pool dedicated_storage marked as autostarted
 ```
 
- ## (2) 建立 LVM volume Group backed storage pool
+## (2) 建立 LVM volume Group backed storage pool
 
 使用 LVM 的優點就會有以下優點啦：
 
