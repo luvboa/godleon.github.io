@@ -219,7 +219,7 @@ Storage Volume 的管理
 
 透過 virsh 建立 storage volume 的語法類似如下：
 
-> virsh vol-create-as --pool POOL_NAME VOL_NAME VOL_SIZE --format raw|qcow2|qed  
+> virsh vol-create-as --pool POOL_NAME VOL_NAME VOL_SIZE --format raw\|qcow2\|qed 
 
 因此假設我們要在 pool **dedicated_storage** 中建立一個格式為 **qcow2**，大小為 **10G** 的 volume，可用下列語法：
 
