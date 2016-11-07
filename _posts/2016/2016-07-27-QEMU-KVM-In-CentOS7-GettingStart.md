@@ -50,6 +50,14 @@ CPU：Intel(R) Xeon(R) CPU E5-2660 v3 @ 2.60GHz
 首先要安裝 KVM、QEMU、libvirtd 相關套件 & 啟動 libvirtd service：
 
 ```bash
+# KVM v2.3 需要使用此 repository
+$ bash -c "echo '[kvm-common]
+name=Latest KVM rpms
+baseurl=http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
+enabled=1
+gpgcheck=0' > /etc/yum.repos.d/kvm.repo"
+
+# 安裝 KVM 1.5
 $ yum install -y qemu-kvm \
     qemu-img \
     qemu-system-x86 \
@@ -66,7 +74,40 @@ $ yum install -y qemu-kvm \
 
 # 也可使用 groupinstall 來批次安裝
 $ yum groupinstall "virtualization" -y
+
+# 若要安裝 KVM 2.3 可使用下面指令
+$ yum install -y qemu-kvm-ev \
+    qemu-img-ev \
+    qemu-system-x86 \
+    libvirt \
+    virt-install \
+    libvirt-python \
+    virt-manager \
+    python-virtinst \
+    libvirt-client \
+    bridge-utils \
+    net-tools \
+    libguestfs-tools-c \
+    iptables-services
 ```
+
+也可以順便設定 [nested virtualization](http://www.linux-kvm.org/images/3/33/02x03-NestedVirtualization.pdf)，可以在虛擬環境中再虛擬一層而不會有太多的 performance lose：(此步驟可以略過)
+
+```bash
+# 目前 nested virtualization 是關閉的 
+$ cat /sys/module/kvm_intel/parameters/nested
+N
+
+# 開啟 nested virtualization
+$ sudo rmmod kvm-intel
+$ sudo sh -c "echo 'options kvm-intel nested=y' >> /etc/modprobe.d/dist.conf"
+$ sudo modprobe kvm-intel
+
+# 開啟 nested virtualization 成功
+$ cat /sys/module/kvm_intel/parameters/nested
+Y
+```
+
 
 ## 防火牆設定
 
