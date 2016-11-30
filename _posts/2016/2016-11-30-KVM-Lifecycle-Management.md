@@ -9,6 +9,7 @@ categories: [kvm]
 tags: [Linux, KVM, SPICE, VNC]
 ---
 
+此篇文章將會介紹 VM 生命周期管理、Qemu Guest Agent、Virtual Video Card、Graphic Server ... 等主題。
 
 VM Lifecycle
 ============
