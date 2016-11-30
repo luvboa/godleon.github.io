@@ -214,42 +214,6 @@ SPICE(Simple Protocol for Independent Computing Environment) 僅有在 Linux 上
 --------------------------------------------------------------------
 
 
-VM migration
-============
-
-VM migration 有分為 **Offline Migration** & **Live Migration**；而虛擬化的美好之處，其中一個很大的原因就支援 VM migration。
-
-VM migration 可以帶來以下優勢：
-
-- uptime 增加，downtime 減少
-
-- 整合 service workload，並減少硬體的耗用
-
-- 硬體 & 軟體要升級變得更容易了
-
-
-要打造一個可以提供 VM Live Migration 的環境，必須注意以下限制：
-
-- storage pool & virtual disk path 在不同的 hypervisor 必須要相同
-
-- 在 non-shared storage 上進行 live migration 是可能的，但不建議
-
-- 若有 unmanaged virtual disk 透過 FC/iSCSI/LVM 附加到 VM 上，不同的 hypervisor 之間都必須要有相同的 storage 連線存在
-
-- VM 使用的 virtual network 在不同的 hypervisor 之間必須都要存在
-
-- 若有設定用來處理 networking 的 bridge 設備，也必須要在不同的 hypervisor 之間都要存在
-
-- 從較高版本的 libvirt & qemu-kvm 轉移 VM 到較低版本的 Host 可能會有問題；但從低版本到高版本基本上是不會有問題
-
-- 不同的 hypervisor 之間時間必須要同步
-
-- 必須要有一致的 DNS 解析設定
-
-
---------------------------------------------------------------------
-
-
 References
 ==========
 
