@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[Ansible] Role 使用介紹"
-description: "在這邊文章中，介紹 Role 以及如何使用"
+description: "This article introduces what's Ansible Role & how to use it"
 date:   2015-04-12 11:14:00
 published: true
 comments: true
