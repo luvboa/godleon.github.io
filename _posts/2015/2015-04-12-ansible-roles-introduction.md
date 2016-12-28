@@ -9,6 +9,8 @@ categories: [ansible]
 tags: [Ansible, Linux]
 ---
 
+此篇文章介紹 Ansible Role 是什麼 & 如何使用
+
 Ansible Role 是什麼 ?
 =====================
 
@@ -136,4 +138,4 @@ Ansible Galaxy
 
 - [http://techieroop.com/variable-of-variable-in-ansible-playbook/#.VWE_vUbwnTw](http://techieroop.com/variable-of-variable-in-ansible-playbook/#.VWE_vUbwnTw)
 
-- [Creating Ansible Roles from Scratch: Part 1 | Azavea Labs](http://www.azavea.com/blogs/labs/2014/10/creating-ansible-roles-from-scratch-part-1/)
+- [Creating Ansible Roles from Scratch: Part 1 \| Azavea Labs](http://www.azavea.com/blogs/labs/2014/10/creating-ansible-roles-from-scratch-part-1/)
