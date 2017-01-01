@@ -145,7 +145,7 @@ internal snapshot 的 snapshot 資訊會存在於同一個 qcow2 檔案中(befor
 
 external snapshot 是以 copy-on-write 的概念進行的，當 VM 進行 snapshot 後，system disk 就會進入 read-only 的模式，後續 VM guest 新增的資料就會放在 overlay disk image 上，以下有個圖示來說明：
 
-![copy-on-write overlay disk image](../images/2017/KVM-Template-And-Snapshot/copy-on-write_overlay-disk0-image.png)
+![copy-on-write overlay disk image](https://github.com/godleon/godleon.github.io/blob/master/_posts/images/2017/KVM-Template-And-Snapshot/copy-on-write_overlay-disk0-image.png?raw=true)
 
 external snapshot 也有以下特點：
 
