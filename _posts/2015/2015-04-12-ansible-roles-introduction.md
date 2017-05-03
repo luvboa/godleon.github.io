@@ -18,7 +18,7 @@ Ansible Role 是一種分類 & 重用的概念，透過將 vars, tasks, files, t
 
 若同樣是 include 的概念，那 role 跟 include 之間不一樣的地方又是在哪裡呢? (include 的介紹可參考[前一篇文章](https://godleon.github.io/blog/2015/05/24/ansible-how-to-use-include))
 
-答案是：<font color='red'>**role 的 include 機制是自動的!**</font>
+答案是：**<font color='red'>role 的 include 機制是自動的!</font>**
 
 我們只要事前將 role 的 vars / tasks / files / handler .... 等等事先定義好並按照特定的結構(下面會提到)放好，Ansible 就會很聰明的幫我們 include 完成，不需要再自己一個一個指定 include。
 
@@ -52,7 +52,7 @@ roles/
 > 以上是完整的 project 結構，實際上不一定要定義如此完整，如果沒有的部分可以不用，例如：若是沒有 template 的部分，就可以不需要 template 目錄。
 
 
-此外，ansible 會針對 role(<font color='red'>**x**</font>) 進行以下處理：
+此外，ansible 會針對 role(**<font color='red'>x</font>**) 進行以下處理：
 
 1. 若檔案 **roles/<font color='red'>x</font>/tasks/main.yml** 存在，則會被自動加入到 playbook 中的 task list 中
 
@@ -77,7 +77,7 @@ Role 的變數宣告
 
 使用 Role 的好處在於利用到 Ansible 的自動化特性，自動將分類好的資訊放入 playbook 並執行，其中變數的處理便是如此。
 
-以下以 role <font color='red'>**common**</font> 為範例：
+以下以 role **<font color='red'>common</font>** 為範例：
 
 ### 預設值
 
