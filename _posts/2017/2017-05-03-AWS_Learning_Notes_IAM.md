@@ -3,7 +3,7 @@ layout: post
 title:  "AWS 學習筆記 - IAM(Identity and Access Management)"
 description: "This article is a memo recorded when learning AWS IAM"
 date: 2017-05-03 04:00:00
-published: false
+published: true
 comments: true
 categories: [aws]
 tags: [AWS, IAM]
