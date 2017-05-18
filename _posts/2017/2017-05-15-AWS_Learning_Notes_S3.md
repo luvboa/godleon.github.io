@@ -83,8 +83,6 @@ S3 is object based. 每個 object 都包含以下資訊：
 
 
 
-
-
 S3 vs Glacier
 =============
 
@@ -99,6 +97,13 @@ S3 vs Glacier
 | First Byte Latency | ms | ms | select minutes or hours |
 | Storage Class | object level | object level | object level |
 | Lifecycle Transitions | yes | yes | yes |
+
+| S3 | Glacier |
+|:--------:|:-------:|
+| up to 5TB object | up to 40TB archive |
+| user-definable key | system-generated archive ID |
+| encrypt is optional | automatically encrypted |
+
 
 S3 收費標準
 ==========
@@ -171,10 +176,40 @@ Design to provide 99.99% durability and 99.99 availability of objects over a giv
 
 - 資料還原時會放到 S3 **RRS(Reduced Redundancy Storage)** class
 
-- AWS 提供每個月免費取得 5% Glacier 資料的額度
+- AWS 提供每個月免費取得 5% Glacier 資料的額度 (每日為單位計算)
 > 可透過設定 **retrieval policy** or **設定 max GB-per-hour limit** 來確保存取資料會在免費的額度下進行，來降低甚至避免還原費用的發生
 
 - 雖然是 S3 Storage Class 的一個選項，但其實 Glacier 是個獨立服務且有獨立的 API，並提供一些 S3 沒有的功能
+
+- 可用來作為取代傳統磁帶作為長期備份的選項 (在某些行業必須有保留資料 N 年的規定)
+
+- 非常可靠，也是有 11 個 9 的 durability
+
+#### Archive
+
+- 在 Glacier 上儲存的備份單位稱為 **archive**（等同 S3 上 object 的概念)
+
+- 每個 archive 最大可以到 **40TB**
+
+- 使用者可以擁有無限數量的 archive
+
+- 每個 archive 都會有一個 unique archive ID (無法自己取名字)
+
+- 所有的 archive 都會被自動加密 & 無法被修改
+
+#### Vault
+
+- 在 Glacier 中存放 archive 的容器稱為 **vault** (等同 S3 上 bucket 的概念)
+
+- 可透過設定 IAM policy or vault access policy 來限制存取
+
+#### Vaults	Locks
+
+- 使用者可透過 Vaults	Locks 針對 Glacier 設定強制管理
+
+- 可藉由設定 Write Once Read Many(WORM) 在 vault lock policy 中來套用到未來所有存放到 valut 的 archive
+
+- 一旦設定了 vault lock policy，就無法再度變更規則
 
 
 ## Lifecycle Management
@@ -234,6 +269,62 @@ AWS 可從兩個管道取得 data encryption key:
 - Cross Region Replication, requires versioning enabled on the source bucket
 
 
+## Pre-Signed URLs
+
+object owner 可以透過 **pre-signed URL** 的機制，提供給其他人**暫時**存取 object 的權限，而有效期限則是由 owner 自行指定。
+
+## Multipart Upload
+
+當使用者有大檔案要上傳時，可開啟 multipart upload 的功能，檔案會被切成多個部份同時上傳，到 S3 上後會自動重組而成原本的檔案。
+
+> 建議超過 100MB 的檔案使用 multipart upload；此外，超過 5GB 的檔案一定要用 multipart upload 才可以上傳
+
+> 可以針對未完成上傳的檔案設定 lifecycle policy，如此可以減少費用的支出，讓超過期限未完成上傳的檔案自動失效
+
+## Range	GETs
+
+可下載指定 object 的部份內容，透過指定 byte 的範圍來取得 object 的部份資料；而這功能必須透過 SDK 搭配 Range HTTP header 才能實現。
+
+> 若是網路品質很差，或是想要從很大的 Glacier 備份中取得部份資料時可能會用到
+
+## Cross-Region Replication
+
+cross-region replication 允許使用者將指定 bucket 的 object 非同步的複製到其他的 region。
+
+- 啟用 cross-region replication 的功能前，必須先啟動 bucket 的 versioning 功能
+
+- 任何與 object 相關的 metadata or ACL 設定更動時，都會觸發 replication 的發生
+
+- 必須設定正確的 IAM policy 讓 S3 本身可以進行 replication 的工作
+
+- 若是已經存在的 bucket 開啟 cross-region replication 的功能，原有的資料不會被複製，必須自行複製 or 透過額外的命令來進行資料搬移
+
+> 此功能常被用來將 object 放在靠使用者較近的地方來減少延遲；或是滿足不同地理區域備份的需求
+
+## Logging
+
+- 針對 bucket 存取的 logging 功能預設關閉，可透過 S3 server access logs 功能開啟
+
+- log 可儲存在同一個 bucket 內，也可以存在另外一個 bucket 中；但重點是設定 prefix(例如：`logs/` or `bucket_name/logs/`) 讓後續尋找 log 方便是很重要的
+
+- log 資訊包含：
+  - requestor account & IP
+  - request time
+  - bucket name
+  - action (GET, PUT, LIST ... etc)
+  - response status & error code
+
+## Event Notification
+
+event notification 可以用來在 bucket 狀態有變更(例如：上傳 object)時驅動某些事件的發生，使用者可以透過此特性來加入到 workflow 的設計，發送警告，或是執行特定工作...等等。
+
+- 設定於 bucket level
+
+- 可在 object 被建立(PUT, POST, COPY or multipart upload), 被刪除(DELETE)，或是偵測到有 RRS(Reduced Redundancy Storage) object 遺失的時候發送通知
+
+- 可透過 Amazon SNS(Simple Notification Service) or SQS(Simple Queue Service) 發送通知，也可以直接呼叫 AWS Lambda function
+
+
 S3 Management Console
 =====================
 
@@ -288,7 +379,6 @@ Create a Static Website using S3
 3. 可以額外設定 index/error pages.
 
 4. 依然要提供 object read permission 才可以
-
 
 
 Exam Tips
@@ -354,7 +444,11 @@ Exam Tips
 - 設定 replication 前已經存在的 object 不會自動被同步，只有後續上傳的 object 會被同步
 > 如果上傳新版的 object，原來所有版本的記錄都會一併被同步
 
-- 單一 bucket 無法同步到多個 region，但可透過 `region1_bucket -> region2_bucket -> region3_bucket` 的方式達成相同效果
+- 任何與 object 相關的 metadata or ACL 被變更時，都會觸發 replication 的工作執行
+
+- 必須設定 IAM policy，用以提供 S3 合適的權限進行 replication 工作
+
+- 單一 bucket 無法同步到多個 region，但可透過 `region1_bucket -> region2_bucket -> region3_bucket` 的方式達成相同效果 (daisy chain 似乎也不行)
 
 - 刪除 object 後，原本同步 region 上的 object 也會被刪除
   - 所從舊版的 console 刪除 delete maker 後可以恢復檔案，但刪除 delete marker 這動作不會被同步，因此同步的 destination bucket 上的檔案不會回復
@@ -471,6 +565,17 @@ You can speed up transfers to S3 using S3 transfer acceleration. This cost extra
 - You can load files to S3 much faster by enabling multipart upload
 
 - Read the S3 FAQ before taking the exam. It comes up A LOT!
+
+
+##　Best Practices, Patterns,	and	Performance
+
+- S3 & Glacier 非常適合在 hybrid cloud 的環境下作為異地備份的工具
+
+- 另一個常見的應用是將 S3 作為大量 blob 檔案的儲存位置，而把這些 blob 的 index 存於其他的服務(例如：Amazon DynamoDB or Amazon RDS)，透過此方式可以針對 key name 提高搜尋的速度並支援複雜的查詢
+
+- S3 會自動 scale 來支援 high request rate，也會自動的根據需求針對 bucket 進行 repartition 的動作
+
+- 若有每秒超過 100 個 reuqest 的需求，可參考 developer guide 中的資訊，讓 object key 可以隨機的分佈 (可透過像是使用 hash 值作為 key name prefix 的方式來達成)
 
 
 應考前建議
