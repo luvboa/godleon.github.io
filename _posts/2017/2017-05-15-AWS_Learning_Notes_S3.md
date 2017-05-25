@@ -271,7 +271,7 @@ AWS 可從兩個管道取得 data encryption key:
 
 ## Pre-Signed URLs
 
-object owner 可以透過 **pre-signed URL** 的機制，提供給其他人**暫時**存取 object 的權限，而有效期限則是由 owner 自行指定。
+object owner 可以透過 **pre-signed URL** 的機制，提供給其他人**暫時**存取 object 的權限，而有效期限則是由 owner 自行指定；也可以透過來保護公開的網頁資料，避免未授權的惡意行為發生。
 
 ## Multipart Upload
 
