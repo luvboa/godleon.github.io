@@ -2,11 +2,11 @@
 layout: post
 title:  "Ceph 簡單指令操作"
 description: "This artical contains simple commands for Ceph management and operation"
-date: 2017-05-29 06:00:00
+date: 2017-05-26 06:00:00
 published: true
 comments: true
 categories: [ceph]
-tags: [AWS, Ceph, SDS]
+tags: [Ceph, SDS]
 ---
 
 
@@ -163,6 +163,35 @@ $ ceph -s
                  384 active+clean
 ```
 
+
+RBD Block Storage
+=================
+
+這個部份是用在把 Ceph 作為 block-based storage 時所需要了解的指令：
+
+```bash
+# 顯示目前的 RBD volume
+$ rbd ls
+vm-101-disk-1
+
+# 顯示指定 RBD volume 的狀態
+$ rbd status vm-101-disk-1
+Watchers:
+	watcher=10.102.70.124:0/3361738208 client.143192 cookie=140498849842176
+
+# 顯示指定 RBD volume 的相關資訊
+$ rbd info vm-101-disk-1
+rbd image 'vm-101-disk-1':
+	size 32768 MB in 8192 objects
+	order 22 (4096 kB objects)
+	block_name_prefix: rbd_data.22f52238e1f29
+	format: 2
+	features: layering, exclusive-lock, object-map, fast-diff, deep-flatten
+	flags: 
+
+# 移除指定的 RBD volume
+$ rbd rm vm-101-disk-1
+```
 
 
 
