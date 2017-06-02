@@ -191,6 +191,48 @@ rbd image 'vm-101-disk-1':
 
 # 移除指定的 RBD volume
 $ rbd rm vm-101-disk-1
+
+# 建立名稱為 Jenkins_Data，大小為 40GB 的 RBD volume
+$ rbd create --pool rbd --image Jenkins_Data --size 40960
+
+# 檢視 RBD volume 資訊
+$ rbd --image Jenkins_Data info
+rbd image 'Jenkins_Data':
+	size 40960 MB in 10240 objects
+	order 22 (4096 kB objects)
+	block_name_prefix: rbd_data.a71d6238e1f29
+	format: 2
+	features: layering, exclusive-lock, object-map, fast-diff, deep-flatten
+	flags: 
+
+# 變更 RBD volume 大小，縮小要加上 "--allow-shrink" 以確保安全
+$ rbd --image Jenkins_Data resize --size 10240 --allow-shrink
+Resizing image: 100% complete...done.
+
+# 確認 RBD volume 容量正確變更
+$ rbd --image Jenkins_Data info
+rbd image 'Jenkins_Data':
+	size 10240 MB in 2560 objects
+	order 22 (4096 kB objects)
+	block_name_prefix: rbd_data.a71d6238e1f29
+	format: 2
+	features: layering, exclusive-lock, object-map, fast-diff, deep-flatten
+	flags: 
+
+# 放大 RBD Volume
+$ rbd --image Jenkins_Data resize --size 20480
+Resizing image: 100% complete...done.
+
+# 確認 RBD volume 容量正確變更
+$ rbd --image Jenkins_Data info
+rbd image 'Jenkins_Data':
+	size 20480 MB in 5120 objects
+	order 22 (4096 kB objects)
+	block_name_prefix: rbd_data.a71d6238e1f29
+	format: 2
+	features: layering, exclusive-lock, object-map, fast-diff, deep-flatten
+	flags: 
+
 ```
 
 
