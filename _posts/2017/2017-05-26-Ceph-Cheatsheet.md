@@ -273,6 +273,8 @@ client.bootstrap-rgw
 References
 ==========
 
+- [Ceph From Scratch · GitBook](https://www.gitbook.com/book/tobegit3hub1/ceph_from_scratch/details)
+
 - [Ceph Cheatsheet - sabaini.at](https://sabaini.at/pages/ceph-cheatsheet.html)
 
 - [最新ceph集群常用命令梳理 - 康建华 - 51CTO技术博客](http://michaelkang.blog.51cto.com/1553154/1698287)
