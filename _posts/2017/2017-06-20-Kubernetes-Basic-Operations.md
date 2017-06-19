@@ -790,16 +790,16 @@ EOF
 References
 ==========
 
-- [Concepts | Kubernetes](https://kubernetes.io/docs/concepts/)
+- [Concepts \| Kubernetes](https://kubernetes.io/docs/concepts/)
 
 - [Kubernetes 最小部署單位 Pod](https://tachingchen.com/tw/blog/Kubernetes-Pod/)
 
-- [GKE 系列教學 (二) – 簡介Pod的網路機制 | GCP 雲端服務頂級合作夥伴 LIVEhouse.in](https://blog.gcp.expert/gke-k8s-pod-network/)
+- [GKE 系列教學 (二) – 簡介Pod的網路機制 \| GCP 雲端服務頂級合作夥伴 LIVEhouse.in](https://blog.gcp.expert/gke-k8s-pod-network/)
 
-- [kubectl Cheat Sheet | Kubernetes](https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/)
+- [kubectl Cheat Sheet \| Kubernetes](https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/)
 
-- [Persistent Volumes | Kubernetes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
+- [Persistent Volumes \| Kubernetes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 
-- [Volumes | Kubernetes](https://kubernetes.io/docs/concepts/storage/volumes/)
+- [Volumes \| Kubernetes](https://kubernetes.io/docs/concepts/storage/volumes/)
 
-- [Deployments | Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+- [Deployments \| Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
