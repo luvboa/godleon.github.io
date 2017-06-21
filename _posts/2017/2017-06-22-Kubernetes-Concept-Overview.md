@@ -9,6 +9,7 @@ categories: [kubernetes]
 tags: [Kubernetes]
 ---
 
+此篇文章嘗試從非常 high level 的角度來概觀 Kubernetes
 
 Components
 ==========
