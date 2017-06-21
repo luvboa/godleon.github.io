@@ -82,7 +82,7 @@ contexts:
 
 - 上面的範例包含了兩組 context，分別是 `default-context` & `context-ubuntu1604`
 
-- 若要使用 kubectl 直接對不同的 context 進行存取，可在命令中加上 `--context [CONTEXT_NAME]` 來動態變更，只要相對應的憑證有設定正確即可s 
+- 若要使用 kubectl 直接對不同的 context 進行存取，可在命令中加上 `--context [CONTEXT_NAME]` 來動態變更，只要相對應的憑證有設定正確即可
 
 
 
@@ -200,9 +200,13 @@ rs/kubernetes-dashboard-2039414953   1         1         1         18h
 在 k8s cluster 剛安裝完成時，其實已經安裝好很多不同的 pod/service/deployment 來提供整體的服務，從上面的結果可以看出使用了以下 resource:
 
 1. [pods (aka 'po')](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)
+
 2. [replicationcontrollers (aka 'rc')](https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/)
+
 3. [services (aka 'svc')](https://kubernetes.io/docs/concepts/services-networking/service/)
+
 4. [deployments (aka 'deploy')](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+
 5. [replicasets (aka 'rs')](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
 
 還有很多其他的 resource，可參考[官網的 Kubernetes Concepts](https://kubernetes.io/docs/concepts/) 取得更多資訊。
@@ -242,9 +246,8 @@ Pod 操作
 
 以下用個很簡單的範例做示範，使用以下設定檔進行佈署
 
-> curl https://raw.githubusercontent.com/kubernetes/kubernetes.github.io/master/docs/user-guide/walkthrough/pod-nginx.yaml
-
-```yaml
+```bash
+$ curl https://raw.githubusercontent.com/kubernetes/kubernetes.github.io/master/docs/user-guide/walkthrough/pod-nginx.yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -255,10 +258,7 @@ spec:
     image: nginx:1.7.9
     ports:
     - containerPort: 80
-```
 
-```bash
-# 建立 pod
 $ kubectl create -f https://raw.githubusercontent.com/kubernetes/kubernetes.github.io/master/docs/user-guide/walkthrough/pod-nginx.yaml
 pod "nginx" created
 ```
