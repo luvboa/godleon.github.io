@@ -9,7 +9,7 @@ categories: [kubernetes]
 tags: [Kubernetes]
 ---
 
-此篇文章針對 Kubernetes Service 進行介紹
+此篇文章介紹 Kubernetes Service 的基本概念 & 使用方式
 
 Overview
 ========
