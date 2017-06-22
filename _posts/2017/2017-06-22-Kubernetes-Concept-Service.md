@@ -152,7 +152,7 @@ Virtual IPs and service proxies
 
 每一個在 K8s cluster 的 node 都會執行一個 kube-proxy 的 process，負責為 ExternalName 以外的 object 提供 virtual IP 的服務，在 Kubernetes v1.2 之後，整個網路的動態調整變成由 iptables 服務來負責處理，如下圖：
 
-![services-iptables-overview](https://kubernetes.io/images/docs/services-iptables-overview.svg)
+![services-iptables-overview](http://www.webpaas.com/usr/uploads/2015/10/1817708548.png)
 
 在此模式下，當 service 被建立後，iptables 服務會自動制定所需要的規則，為了就是將網路的流量導到 Label selector 所選取到的 pod 上，這樣的作法比起 v1.1 之前使用的 userspace proxy 效能更好。
 
@@ -295,3 +295,5 @@ References
 - [Services \| Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/)
 
 - [探索Kubernetes的网络原理及方案](https://mp.weixin.qq.com/s/oPX8DW6Ek5gq0b9IH2cg8g)
+
+- [标签 micro-service 下的文章 - Container Based Platform as a Service](http://webpaas.com/index.php/tag/micro-service/)
