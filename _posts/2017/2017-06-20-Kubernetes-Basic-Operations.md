@@ -64,13 +64,13 @@ contexts:
 - name: default-context
   context:
     cluster: k8s-cluster-centos7
-    namespace: kube-system
+    namespace: default
     user: root_centos7
 
 - name: context-ubuntu1604
   context:
     cluster: k8s-cluster-ubuntu1604
-    namespace: kube-system
+    namespace: default
     user: root_ubuntu1604
 ```
 
