@@ -175,7 +175,7 @@ NodePort 會在每個 node 上開啟相同 port number 供連結，因此使用�
 
 我們可以透過以下指令定義一個 type 為 NodePort 的 service：
 
-```yaml
+```bash
 # 建立一個 type=NodePort 的 service
 $ cat <<EOF | kubectl create -f -
 kind: Service
@@ -295,90 +295,3 @@ References
 - [Services \| Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/)
 
 - [探索Kubernetes的网络原理及方案](https://mp.weixin.qq.com/s/oPX8DW6Ek5gq0b9IH2cg8g)
-
-
-
-```bash
-$ cat <<EOF | kubectl create -f -
-
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: web-pv-volume
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/tmp/data"
-
----
-
-kind: PersistentVolumeClaim
-apiVersio$ curl https://raw.githubusercontent.com/kubernetes/kubernetes.github.io/master/docs/user-guide/walkthrough/pod-nginx-with-label.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx
-  labels:
-    app: nginx
-spec:
-  containers:
-  - name: nginx
-    image: nginx
-    ports:
-    - containerPort: 80
-n: v1
-metadata:
-  name: web-pv-claim
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 3Gi
-
----
-
-kind: Pod
-apiVersion: v1
-metadata:
-  name: nginx-1-with-persistent-vol
-spec:
-  volumes:
-    - name: pv-storage
-      persistentVolumeClaim:
-       claimName: web-pv-claim
-  containers:
-  - name: nginx-1
-    image: nginx:1.7.9
-    ports:
-    - containerPort: 80
-    volumeMounts:
-    - name: pv-storage  # 指定使用名稱為 "web-persistent-vol" 的 persistent volume
-      mountPath: /usr/share/nginx/html  # 掛載目錄
-
----
-
-kind: Pod
-apiVersion: v1
-metadata:
-  name: nginx-2-with-persistent-vol
-spec:
-  volumes:
-    - name: pv-storage
-      persistentVolumeClaim:
-       claimName: web-pv-claim
-  containers:
-  - name: nginx-2
-    image: nginx:1.7.9
-    ports:
-    - containerPort: 80
-    volumeMounts:
-    - name: pv-storage  # 指定使用名稱為 "web-persistent-vol" 的 persistent volume
-      mountPath: /usr/share/nginx/html  # 掛載目錄
-EOF
-```
