@@ -295,5 +295,4 @@ References
 
 - [為什麼我不使用Kubernetes的Ingress - 每日頭條](https://kknews.cc/news/p5mgk48.html)
 
-- [Accessing Kubernetes Pods from Outside of the Cluster - Ales Nosek - The Software Practitioner]
-(http://alesnosek.com/blog/2017/02/14/accessing-kubernetes-pods-from-outside-of-the-cluster/)
+- [Accessing Kubernetes Pods from Outside of the Cluster - Ales Nosek - The Software Practitioner](http://alesnosek.com/blog/2017/02/14/accessing-kubernetes-pods-from-outside-of-the-cluster/)
